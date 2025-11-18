@@ -1,0 +1,14 @@
+<h2>3D Online Store!</h2>
+<div class="viewer-list-grid">
+  @for (item of modelData; track item.displayName; let i = $index) {
+  <div class="viewer-container">
+    
+    <h3>{{ item.displayName }}</h3>
+    <div #rendererContainer class="webgl-canvas">
+    </div>
+    <p> Offer - {{item.offer}}</p>
+  </div>
+  } @empty {
+  <div>No models to display.</div>
+  }
+</div>
