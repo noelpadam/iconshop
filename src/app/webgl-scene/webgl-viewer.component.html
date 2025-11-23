@@ -5,16 +5,16 @@
   </h2>
 
   <!-- Responsive Grid Layout (using viewer-list-grid class) -->
+
   <div class="viewer-list-grid">
-    @for (item of modelData; track item.index) {
-    <!-- Link Wrapper (Anchor Tag) -->
-    <a href="https://www.google.com" class="card-link">
+   @for (config of allModelConfigs; track config.index) {
+     <a href="https://www.google.com" class="card-link">
       <!-- Item Card (using svg class) -->
       <div class="svg">
 
         <!-- Title -->
         <h3 class="card-title">
-          {{ item.displayName | titlecase}}
+          {{ config.displayName | titlecase}}
         </h3>
 
         <!-- 3D Viewer Container (using viewer-container and webgl-canvas classes) -->
@@ -32,8 +32,11 @@
         <!-- Offer Text & Button -->
       </div>
     </a>
-    } @empty {
+  } @empty {
     <div class="empty-message">No models to display.</div>
-    }
-  </div>
+  }
 </div>
+</div>
+
+
+
