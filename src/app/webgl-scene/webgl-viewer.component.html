@@ -1,15 +1,45 @@
-<h2>3D Icon Store!</h2>
-<div class="viewer-list-grid">
-  @for (item of modelData; track item.displayName; let i = $index) {
-   <a href="https://www.google.com"><div class="svg">
-      <h3>{{ item.displayName | titlecase}}</h3>
-      <div class="viewer-container">
-        <div #rendererContainer class="webgl-canvas">
+<!-- Updated Template with plain HTML structure and custom classes -->
+<div class="main-container">
+  <h2 class="main-title">
+    3D Icon Store!
+  </h2>
+
+  <!-- Responsive Grid Layout (using viewer-list-grid class) -->
+  <div class="viewer-list-grid">
+    @for (item of modelData; track item.index) {
+    <!-- Link Wrapper (Anchor Tag) -->
+    <a href="https://www.google.com" class="card-link">
+      <!-- Item Card (using svg class) -->
+      <div class="svg">
+
+        <!-- Title -->
+        <h3 class="card-title">
+          {{ item.displayName | titlecase}}
+        </h3>
+
+        <!-- 3D Viewer Container (using viewer-container and webgl-canvas classes) -->
+        <div class="viewer-container">
+          <div #rendererContainer class="webgl-canvas">
+            <!-- Loading Indicator (Updated to use Angular's new @if syntax) -->
+            @if (!isLoaded) {
+            <div class="loading-overlay">
+              <div class="spinner"></div>
+            </div>
+            }
+          </div>
         </div>
+
+        <!-- Offer Text & Button -->
+        <!-- <div class="card-footer">
+                <p class="card-offer">{{ item.offer }}</p>
+                <button class="detail-button">
+                  View Details
+                </button>
+              </div> -->
       </div>
-    </div>
     </a>
-  } @empty {
-  <div>No models to display.</div>
-  }
+    } @empty {
+    <div class="empty-message">No models to display.</div>
+    }
+  </div>
 </div>

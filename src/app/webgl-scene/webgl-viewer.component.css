@@ -1,132 +1,164 @@
-/* room-scene.component.css */
+  /* Base styles */
+    
+  :host {
+      display: block;
+   }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+   .main-container {
+      padding: 16px;
+      /* background-color: #f9fafb; bg-gray-50 */
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.viewer-container hr {
-      width: 400px !important;
-      position: absolute;
-}
+    .main-title {
+      font-size: 2rem; /* text-3xl */
+      font-weight: 700; /* font-bold */
+      text-align: center;
+      margin-bottom: 24px; /* mb-6 */
+      color: #374151; /* text-gray-800 */
+    }
 
-p.salet {
-  font-size: 14px;
-  font-weight: 900;
-  color: rgb(52, 52, 52);
-}
-
-span.saleara {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: space-between;
-    width: 90%;
-    padding: 0px 10px 0px 10px;
-}
-
-button.buybtn.custom {
-    width: 60px;
-    height: 30px;
-    border-radius: 30px;
-    background-color: black;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-button.buybtn.custom:hover {
-    background-color: rgb(125, 125, 125);
-    color: white;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-/* --- 1. Main Component Host Container --- */
-/* Ensures the overall component takes full width and provides a flex context */
-:host {
-    display: flex;
-    flex-direction: column; /* Stacks viewers vertically initially */
-    width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-h2 {
-  color: #554d4d;
-  font-family: Arial, Helvetica, sans-serif;
-  cursor: pointer;
-}
-
-/* --- 2. Container for the Model List --- */
-/* Uses CSS Grid for a responsive, clean layout */
-.viewer-list-grid {
-    display: grid;
-    /* Defines default columns: 1 column on small screens, 2 on medium/large */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px; /* Space between the viewer boxes */
-    width: 30%;
-    margin-top: 15px;
-}
-
-/* --- 3. Individual Viewer Container (.viewer-container) --- */
-/* This is the element hosting the model info and the canvas. */
-.viewer-container {
-    background-color: #f7f7f7; /* Light background to visually separate viewers */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 2px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    /* Fixed aspect ratio to prevent layout shifting when the model loads */
-    aspect-ratio: 1 / 1; 
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.svg h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    color: #554d4d;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
-}
-
-/* --- 4. Three.js Canvas Wrapper (.threejs-canvas) --- */
-/* This is the template element with #rendererContainer */
-.webgl-canvas {
-    flex-grow: 1; /* Allows the canvas wrapper to fill the remaining space */
-    min-height: 0; /* Important for flex items to shrink correctly */
-    width: 100%;
-    overflow: hidden; /* Ensures nothing spills out */
-}
-
-/* --- 5. The Actual WebGL Canvas (inserted by Three.js) --- */
-/* Ensures the <canvas> element fills its parent (.threejs-canvas) */
-.webgl canvas {
-    display: block; /* Removes any default bottom margin/spacing */
-    width: 100% !important; 
-    height: 100% !important;
-}
-
-/* --- 6. Optional: Responsiveness for large screens --- */
-@media (min-width: 1200px) {
+    /* Grid Layout - Responsive using CSS Grid */
     .viewer-list-grid {
-        /* On extra large screens, switch to 3 columns */
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Default: 2 columns */
+      gap: 24px; /* gap-6 */
+    }
+
+    /* Tablet breakpoint (sm:grid-cols-3) */
+    @media (min-width: 640px) {
+      .viewer-list-grid {
         grid-template-columns: repeat(3, 1fr);
+      }
     }
-}
 
-@media (min-width: 600px) {
-    .viewer-list-grid {
-        width: 20%;
+    /* Laptop breakpoint (lg:grid-cols-4) */
+    @media (min-width: 1024px) {
+      .viewer-list-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
-}
 
-a {
-    text-decoration: none;
-}
+    /* Desktop breakpoint (xl:grid-cols-5) */
+    @media (min-width: 1280px) {
+      .viewer-list-grid {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+
+    /* Card Styling */
+    .card-link {
+      text-decoration: none;
+      display: block;
+    }
+    
+    .svg {
+      background-color: #f3f3f3;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+      border-radius: 0.75rem; /* rounded-xl */
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s; /* transition duration-300 */
+      height: 100%; /* Ensure full height in grid cell */
+      width: 140px;
+    }
+    
+    .svg:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* hover:shadow-2xl */
+    }
+
+    /* Card Content */
+    .card-title {
+      font-size: 1rem; /* text-xl */
+      font-weight: 600; /* font-semibold */
+      color: #374151; /* text-indigo-700 */
+      padding: 2px 16px; /* pt-4 px-4 */
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .viewer-container {
+      padding: 10px; /* p-4 */
+    }
+
+    .webgl-canvas {
+      width: 100%;
+      height: 80px; /* h-40 in Tailwind */
+      background-color: #f3f4f6; /* bg-gray-100 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: grab;
+      border-radius: 0.5rem; /* rounded-lg */
+    }
+    
+    /* Loading Indicator */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(229, 231, 235, 0.8); /* bg-gray-200/80 */
+      border-radius: 0.5rem;
+    }
+
+    .spinner {
+      height: 32px; /* h-8 */
+      width: 32px; /* w-8 */
+      border-radius: 50%;
+      border-bottom: 2px solid #ff6be9; /* border-b-2 border-indigo-500 */
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Card Footer */
+    .card-footer {
+      padding: 16px;
+      border-top: 1px solid #f3f4f6; /* border-t border-gray-100 */
+    }
+    
+    .card-offer {
+      font-size: 0.875rem; /* text-sm */
+      color: #6b7280; /* text-gray-500 */
+      margin-top: 4px; /* mt-1 */
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .detail-button {
+      margin-top: 12px; /* mt-3 */
+      width: 100%;
+      background-color: #ff6be9; /* bg-indigo-500 */
+      color: white;
+      padding: 6px 0; /* py-1.5 */
+      font-size: 0.875rem; /* text-sm */
+      border-radius: 0.5rem; /* rounded-lg */
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s, box-shadow 0.15s; /* transition duration-150 */
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* shadow-md */
+    }
+    
+    .detail-button:hover {
+      background-color: #ff6be9; /* hover:bg-indigo-600 */
+    }
+    
+    .empty-message {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+    }
+    
+    
