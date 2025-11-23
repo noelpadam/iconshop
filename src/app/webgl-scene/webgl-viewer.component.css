@@ -161,4 +161,10 @@
       color: #6b7280;
     }
     
-    
+    span.ablinks {
+      font-size: 14px;
+      position: absolute;
+      right: 15px;
+      margin-top: 10px;
+      cursor: pointer;
+    }

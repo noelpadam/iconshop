@@ -1,0 +1,38 @@
+    :host {
+        display: block;
+    }
+
+    .main-container {
+        padding: 16px;
+        /* background-color: #f9fafb; bg-gray-50 */
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        /* text-3xl */
+        font-weight: 700;
+        /* font-bold */
+        text-align: center;
+        margin-bottom: 24px;
+        /* mb-6 */
+        color: #374151;
+        cursor: pointer;
+        /* text-gray-800 */
+    }
+
+    div.img-container {
+        display: block;
+        width: calc(100vw - 50rem);
+        height: 100%;
+        margin-top: 44px;
+        padding: 7px;
+        border-radius: 12px;
+        background: #dddedfb0;
+    }
+
+    .img {
+       max-width: 100%;
+       height: auto;
+    }

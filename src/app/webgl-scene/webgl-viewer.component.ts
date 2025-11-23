@@ -3,6 +3,7 @@ import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChildren, QueryLis
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { RouterLinkWithHref } from "@angular/router";
 
 // --- 1. Define Model Config Interface (Source of Truth) ---
 interface ModelConfig {
@@ -137,7 +138,7 @@ class ThreeViewer {
   standalone: true,
    // Using OnPush for performance improvement since modelData is static after initialization
   changeDetection: ChangeDetectionStrategy.OnPush, 
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLinkWithHref],
   styleUrls: ['./webgl-viewer.component.css']
 })
 export class WebglViewerComponent implements AfterViewInit, OnDestroy {
