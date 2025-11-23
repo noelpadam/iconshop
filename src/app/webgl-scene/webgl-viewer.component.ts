@@ -163,7 +163,7 @@ export class WebglViewerComponent implements AfterViewInit, OnDestroy {
       modelPath: this.GLB_MODEL_PATH_G,
     })),
     // Edge Logo Models (10 instances)
-    ...Array.from({ length: 6 }, (_, i) => ({
+    ...Array.from({ length: 7 }, (_, i) => ({
       index: 10 + i,
       displayName: `Edge logo ${11 + i}`,
       offer: `${10 + i}% Off`,
