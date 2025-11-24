@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChildren, QueryList, ChangeDetectionStrategy, afterNextRender, ChangeDetectorRef } from '@angular/core';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RouterLinkWithHref } from "@angular/router";
 
 // --- 1. Define Model Config Interface (Source of Truth) ---
@@ -145,6 +145,7 @@ export class WebglViewerComponent implements AfterViewInit, OnDestroy {
   // Use constants for paths
   private readonly GLB_MODEL_PATH_G = '/glbfiles/googlelogo.glb';
   private readonly GLB_MODEL_PATH_EDGE = '/glbfiles/edge.glb';
+  private readonly GLB_MODEL_PATH_OPER = '/glbfiles/opera.glb';
 
   // State
   private viewers: ThreeViewer[] = [];
@@ -154,8 +155,8 @@ export class WebglViewerComponent implements AfterViewInit, OnDestroy {
   // Combine model data into a single, cohesive array for simpler iteration
   public allModelConfigs: ModelConfig[] = [
     // Google Logo Models (10 instances)
-    ...Array.from({ length: 10 }, (_, i) => ({
-      index: i,
+    ...Array.from({ length: 6 }, (_, i) => ({
+      index: 1 + i,
       displayName: `G logo ${i + 1}`,
       offer: `${30 - i}% Discount`,
       scale: [2, 2, 2] as [number, number, number], 
@@ -163,13 +164,22 @@ export class WebglViewerComponent implements AfterViewInit, OnDestroy {
       modelPath: this.GLB_MODEL_PATH_G,
     })),
     // Edge Logo Models (10 instances)
-    ...Array.from({ length: 7 }, (_, i) => ({
-      index: 10 + i,
-      displayName: `Edge logo ${11 + i}`,
+    ...Array.from({ length: 6 }, (_, i) => ({
+      index: 6 + i,
+      displayName: `Edge logo ${7 + i}`,
       offer: `${10 + i}% Off`,
       scale: [2, 2, 2] as [number, number, number], 
       pos: [0, 0, 0] as [number, number, number],
       modelPath: this.GLB_MODEL_PATH_EDGE,
+    })),
+    // Opera Logo Models (1 instances)
+    ...Array.from({ length: 4 }, (_, i) => ({
+      index: 12 + i,
+      displayName: `Opera ${13 + i}`,
+      offer: `${10 + i}% Off`,
+      scale: [1, 1, 1] as [number, number, number], 
+      pos: [0, 0, 0] as [number, number, number],
+      modelPath: this.GLB_MODEL_PATH_OPER,
     })),
   ];
 
